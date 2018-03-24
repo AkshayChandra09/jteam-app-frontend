@@ -1,0 +1,43 @@
+<div class="container">
+    <h1>Add New Task</h1>
+    <hr>
+    <br>
+    <form (ngSubmit)="processForm()">
+        <div class="form group">
+            <label for="task"><b>Task</b></label>
+            <input type="text" name="task_name" class="form-control" [(ngModel)]="task.task_name">
+        </div>
+        <br/>
+        <div class="form group">
+            <label for="assigned_date"><b>Date Assigned</b></label>
+            <input type="date" name="task_assigned_date" class="form-control" [(ngModel)]="task.task_assigned_date">
+        </div>
+        <br/>
+        <div class="form group">
+            <label for="priority"><b>Priority</b></label>
+            <select name="task_priority" [(ngModel)]="task.task_priority">
+                <option *ngFor="let pt of priority">{{pt}}</option>
+            </select>
+        </div>
+        <br/>
+        <!--<div class="form group">
+      <label for="priority">Priority</label>
+      <input type="text" name="task_priority" class="form-control" [(ngModel)] = "task.task_priority">
+    </div>-->
+
+        <div class="form group">
+            <label for="deadline"><b>Due Date</b></label>
+            <input type="date" name="task_deadline" class="form-control" [(ngModel)]="task.task_deadline">
+        </div>
+        <br/>
+        <div class="form group">
+            <label for="status"><b>Status</b></label>
+            <!-- <input type="text" name="task_status" class="form-control" [(ngModel)] = "task.task_status">-->
+            <select name="task_status" [(ngModel)]="task.task_status">
+                <option *ngFor="let st of status">{{st}}</option>
+            </select>
+        </div>
+        <br/>
+        <input type="submit" value="Save" class="btn btn-success">
+    </form>
+</div>

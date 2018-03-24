@@ -1,0 +1,40 @@
+<div class="container">
+  <h1>Task Manager</h1>
+  <hr>
+  <!--<a class="btn btn-success" href="/add_task" (click)="newTask()">Add Task</a>-->
+  <button class="btn btn-primary" (click)="newTask()">Add Task</button>
+  <br>
+  <br>
+  <table class="table table-striped">
+    <thead>
+      <th>Id</th>
+      <th>Task</th>
+      <th>Date Assigned</th>
+      <th>Priority</th>
+      <th>Due Date</th>
+      <th>Status</th>
+      <th>Assigned To</th>
+      <th>Operations</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks">
+        <td>{{task.id}}</td>
+        <td>{{task.task_name}}</td>
+        <td>{{task.task_assigned_date | date:"MM/dd/yyyy"}}</td>
+        <td>{{task.task_priority}}</td>
+        <td>{{task.task_deadline | date:"MM/dd/yyyy"}}</td>
+        <td>{{task.task_status}}</td>
+        <td>
+          <button class="btn btn-primary" (click)="viewMembers(task)">View</button>
+        </td>
+        <td>
+          <button class="btn btn-primary" (click)="updateTask(task)">Edit</button>
+        <!--
+          <button class="btn btn-primary"><a [routerLink]="['/edit_task', 'task.task_id']">Edit</a></button>
+        -->
+          <button class="btn btn-danger" (click)="deleteTask(task)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

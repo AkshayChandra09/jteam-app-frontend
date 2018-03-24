@@ -1,0 +1,15 @@
+.navbar {
+    margin-bottom: 0;
+}
+
+.navbar-brand {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 2m !important;
+    letter-spacing: .1em;
+}
+
+.navbar-brand > span {
+    font-weight: 300;
+}
