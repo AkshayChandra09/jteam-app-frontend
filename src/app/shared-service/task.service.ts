@@ -7,6 +7,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import { Task } from '../task';
+import { TaskObject } from '../task-object';
+
 
 @Injectable()
 export class TaskService {
@@ -30,6 +32,11 @@ export class TaskService {
 
   addTasks(task:Task){
     return this._http.post(this.baseUrl+'/new_task', JSON.stringify(task), this.options).map((response:Response) => response.json()).catch(this.errorHandler);
+  }
+
+  addTaskWithMembers(task: TaskObject){
+    console.log(task);
+    return this._http.post(this.baseUrl+'/add_task_with_members', JSON.stringify(task), this.options).map((response:Response) => response.json()).catch(this.errorHandler);
   }
 
   updateTask(task:Task){

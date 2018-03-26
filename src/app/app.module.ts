@@ -24,6 +24,7 @@ import { FusionChartsModule } from 'angular4-fusioncharts';
 import { LoginComponent } from './components/login/login.component';
 
 
+
 FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
 
 const appRoutes:Routes = [

@@ -24,6 +24,10 @@ export class UserService {
     return this._http.post(this.baseUrl+'/login', JSON.stringify(user), this.options).map((response:Response) => response.json()).catch(this.errorHandler);
   }
 
+  getUsers(){
+    return this._http.get(this.baseUrl+'/getUsers', this.options).map((response:Response) => response.json()).catch(this.errorHandler);
+  }
+
   errorHandler(error:Response){
     return Observable.throw(error||"SERVER ERROR");
   }

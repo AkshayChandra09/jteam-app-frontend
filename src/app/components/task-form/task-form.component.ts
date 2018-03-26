@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {Task} from '../../task';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import { TaskService } from '../../shared-service/task.service';
+import {User} from '../../user'; 
+import {TeamMember} from '../../team-member';
+import {UserService} from '../../shared-service/user.service';
+
+import {TaskObject} from '../../task-object';
+
 
 @Component({
   selector: 'app-task-form',
@@ -10,25 +16,43 @@ import { TaskService } from '../../shared-service/task.service';
 })
 export class TaskFormComponent implements OnInit {
 
-  private task:Task;
+  private task = new Task();
+  teamMembers: User[];
+  usersArray:User[];
+  task_object:TaskObject;
 
   status = ["Pending","In-Progress","Completed"];
   priority = ["High", "Medium", "Low"];
 
-  constructor(private _taskService:TaskService, private _router:Router) { }
+  constructor(private _taskService:TaskService, private _router:Router, private _userService:UserService) { }
 
   ngOnInit() {
-    this.task = this._taskService.getter();
+    this._userService.getUsers().subscribe((usersArray)=>{
+      console.log(usersArray);
+      this.usersArray=usersArray;
+    }, (error)=> {
+      console.log(error);
+    });
   }
 
   processForm(){
+    //this.task.teamMembers.push(this.teamMembers);
+    //console.log("Team: ",this.teamMembers);
+
     if(this.task.id==undefined){
-      this._taskService.addTasks(this.task).subscribe((task)=>{
-        console.log(task);
+      this.task_object = new TaskObject(this.task, this.teamMembers);
+      this._taskService.addTaskWithMembers(this.task_object).subscribe((task_object)=>{
+        console.log(task_object);
         this._router.navigate(['/view_tasks']);
       }, (error)=>{
         console.log(error);
       });
+      /*this._taskService.addTasks(this.task).subscribe((task)=>{
+        console.log(task);
+        this._router.navigate(['/view_tasks']);
+      }, (error)=>{
+        console.log(error);
+      });*/
     }else{
       this._router.navigate(['/edit_tasks']);
       /*this._taskService.updateTask(this.task).subscribe((task)=>{
@@ -38,6 +62,14 @@ export class TaskFormComponent implements OnInit {
         console.log(error);
       });*/
     }
+  }
+
+  selectedValues(){
+    /*let teamMembers: TeamMember[] = form.controls['selectedUsers'].value;
+    for (let i=0; i < teamMembers.length; i++) {
+       console.log("User Id: " + teamMembers[i].userId);
+       console.log("User Name: " + teamMembers[i].userName);
+    }*/
   }
 
 }

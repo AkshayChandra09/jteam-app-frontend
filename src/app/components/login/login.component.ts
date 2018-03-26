@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../user';
+
 import {Router} from '@angular/router';
 import { UserService } from '../../shared-service/user.service'; 
+
+import { User } from '../../user';
 
 
 
@@ -12,20 +14,24 @@ import { UserService } from '../../shared-service/user.service';
 })
 export class LoginComponent implements OnInit {
 
-  private user:User;
+  private user= new User();
   
   constructor(private _userService:UserService, private _router:Router) { }
 
   ngOnInit() {
-    
+   // this.user.username = "";
+   // this.user.password = "";
   }
 
   loginForm(){
     this._userService.tryLogin(this.user).subscribe((user)=>{
-      console.log(user);
+      //console.log(user);
+      this._router.navigate(['/']);
     }, (error)=>{
       console.log(error);
     });
   }
 
 }
+
+

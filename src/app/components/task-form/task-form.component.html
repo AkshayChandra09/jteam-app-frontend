@@ -4,18 +4,25 @@
     <br>
     <form (ngSubmit)="processForm()">
         <div class="form group">
-            <label for="task"><b>Task</b></label>
+            <label for="task">
+                <b>Task</b>
+            </label>
             <input type="text" name="task_name" class="form-control" [(ngModel)]="task.task_name">
         </div>
         <br/>
         <div class="form group">
-            <label for="assigned_date"><b>Date Assigned</b></label>
+            <label for="assigned_date">
+                <b>Date Assigned</b>
+            </label>
             <input type="date" name="task_assigned_date" class="form-control" [(ngModel)]="task.task_assigned_date">
         </div>
         <br/>
         <div class="form group">
-            <label for="priority"><b>Priority</b></label>
-            <select name="task_priority" [(ngModel)]="task.task_priority">
+            <label for="priority">
+                <b>Priority</b>
+            </label>
+            <br/>
+            <select style="width:100px; height:20px" name="task_priority" [(ngModel)]="task.task_priority">
                 <option *ngFor="let pt of priority">{{pt}}</option>
             </select>
         </div>
@@ -26,16 +33,35 @@
     </div>-->
 
         <div class="form group">
-            <label for="deadline"><b>Due Date</b></label>
+            <label for="deadline">
+                <b>Due Date</b>
+            </label>
             <input type="date" name="task_deadline" class="form-control" [(ngModel)]="task.task_deadline">
         </div>
         <br/>
         <div class="form group">
-            <label for="status"><b>Status</b></label>
+            <label for="status">
+                <b>Status</b>
+            </label>
+            <br/>
             <!-- <input type="text" name="task_status" class="form-control" [(ngModel)] = "task.task_status">-->
-            <select name="task_status" [(ngModel)]="task.task_status">
+            <select style="width:100px; height:20px" name="task_status" [(ngModel)]="task.task_status">
                 <option *ngFor="let st of status">{{st}}</option>
             </select>
+        </div>
+        <br/>
+        <div class="form group">
+            <label for="team">
+                <b>Team Members:</b>
+            </label>
+            <br/>
+            <select style="width:200px" class="selectpicker" multiple name="selectedMembers" [(ngModel)] = "teamMembers">
+                    <option *ngFor="let member of usersArray" [ngValue]="member">
+                         {{ member.user_name }}
+                    </option>
+            </select> 
+
+            <p *ngFor="let user of teamMembers"> Selected value: {{user.user_name}} </p>
         </div>
         <br/>
         <input type="submit" value="Save" class="btn btn-success">

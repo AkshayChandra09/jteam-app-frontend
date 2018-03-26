@@ -1,3 +1,5 @@
+//import {TeamMember} from './team-member';
+
 export class Task {
 
 	id:Number;
@@ -11,4 +13,6 @@ export class Task {
 	task_status:string;
 	
 	task_priority:string;
+
+	//teamMembers: TeamMember[];
 }
