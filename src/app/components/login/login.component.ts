@@ -24,14 +24,19 @@ export class LoginComponent implements OnInit {
   }
 
   loginForm(){
-    this._userService.tryLogin(this.user).subscribe((user)=>{
+    this._router.navigate(['/dashboard']);
+    /*this._userService.tryLogin(this.user).subscribe((user)=>{
       //console.log(user);
-      this._router.navigate(['/']);
+      this._router.navigate(['/dashboard']);
     }, (error)=>{
       console.log(error);
-    });
+    });*/
+  
   }
 
+  registerUser(){
+    this._router.navigate(['/register']);
+  }
 }
 
 

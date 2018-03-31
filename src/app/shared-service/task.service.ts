@@ -51,6 +51,11 @@ export class TaskService {
     return this._http.get(this.baseUrl+'/showMembers/'+id, this.options).map((response:Response) => response.json()).catch(this.errorHandler);
   }
 
+  deleteMember(task_id:Number, uid:Number){
+    return this._http.delete(this.baseUrl+'/deleteMember/'+task_id+'/'+uid,this.options).map((response:Response)=>response.json()).catch(this.errorHandler);
+  }
+
+
   errorHandler(error:Response){
       return Observable.throw(error||"SERVER ERROR");
   }

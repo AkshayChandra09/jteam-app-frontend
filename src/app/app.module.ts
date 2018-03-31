@@ -22,6 +22,10 @@ import * as Charts from 'fusioncharts/fusioncharts.charts';
 import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
 import { FusionChartsModule } from 'angular4-fusioncharts';
 import { LoginComponent } from './components/login/login.component';
+import { TaskMembersComponent } from './components/task-members/task-members.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ManageTeamComponent } from './components/manage-team/manage-team.component';
+
 
 
 
@@ -29,11 +33,14 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
 
 const appRoutes:Routes = [
   {path:'', component:LoginComponent},
+  {path:'register', component:RegisterComponent},
   {path:'dashboard', component:DashboardComponent},
   {path:'view_tasks', component:ListtasksComponent},
   {path:'add_task', component:TaskFormComponent},
+  {path:'manage_team', component:ManageTeamComponent},
   {path:'edit_task/:task_id', component:EditTaskComponent},
-  {path:'statistics', component:ReportComponent}
+  {path:'statistics', component:ReportComponent},
+  {path:'task_members/:task_id', component:TaskMembersComponent}
 ]
 
 @NgModule({
@@ -45,16 +52,22 @@ const appRoutes:Routes = [
     EditTaskComponent,
     DashboardComponent,
     ReportComponent,
-    LoginComponent
+    LoginComponent,
+    TaskMembersComponent,
+    RegisterComponent,
+    ManageTeamComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    FusionChartsModule
+    FusionChartsModule,
   ],
   providers: [TaskService, ProjectService, UserService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  isValid: boolean = false;
+
+}

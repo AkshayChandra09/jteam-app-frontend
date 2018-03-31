@@ -1,16 +1,20 @@
-<h1 style="margin-left:5%">Dashboard</h1>
-<br/>
-<div class="container">
-  <div class="row">
-      <div *ngFor="let proj of dashboard">
+<div class="container" style="margin-left:10%">
+  <h1>Dashboard</h1>
+  <br/>
+  <p>
+    <b>Projects are enlisted on this page</b>
+  </p>
+  <hr>
+    <div class="row">
+      <div *ngFor="let proj of dashboard" style="padding:10px;">
         <div class="card" style="width: 20rem;">
-          <div class="card-block" style="padding: 10px; text-align: left">
-            <h4 class="card-title">{{proj.project_name}}</h4>
+          <div class="card-block" style="padding:10px; text-align: left">
+            <h4 class="card-title">{{proj.project_name}}  {{proj.id}}</h4>
             <p class="card-text">{{proj.project_desc}}</p>
-            <a href="#" class="btn btn-primary">Dive In</a>
+            <button class="btn btn-primary" (click) = "selectedProject(proj)">Dive In</button>
           </div>
         </div>
         <br/>
       </div>
-  </div>
+    </div>
 </div>

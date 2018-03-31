@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Team handling this task</h1>
+  <br>
+  <table class="table table-striped">
+    <thead>
+      <th>Id</th>
+      <th>Name</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user.id}}</td>
+        <td>{{user.user_name}}</td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteMember(user)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

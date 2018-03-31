@@ -1,19 +1,43 @@
 <div class="container">
-  <h1>Login</h1>
-  <hr>
-  <br>
-  <form (ngSubmit)="loginForm()">
-      <div class="form group">
-          <label for="user_name"><b>Username</b></label>
-          <input type="text" name="user_name" class="form-control" [(ngModel)]="user.user_name">
-      </div>
-     
-      <br/>
-      <div class="form group">
-          <label for="password"><b>Password</b></label>
-          <input type="password" name="password" class="form-control" [(ngModel)]="user.password">
-      </div>
-      <br/>
-      <input type="submit" value="Login" class="btn btn-primary">
-  </form>
+    <h1>Login
+        <button style="margin-left:100px" class="btn btn-success" (click)="registerUser()">Register</button>
+    </h1>
+    <hr>
+    <br>
+    <form (ngSubmit)="loginForm()" #login="ngForm">
+        <div class="form group">
+            <label for="user_name">
+                <b>Username</b>
+            </label>
+            <input type="text" required minlength="5" maxlength="30" name="user_name" class="form-control" [(ngModel)]="user.user_name"
+                #username="ngModel">
+            <div *ngIf="username.errors && (username.dirty || username.touched)" class="alert alert-danger">
+                <div [hidden]="!username.errors.required">
+                    Username is required!
+                </div>
+                <div [hidden]="!username.errors.minlength">
+                    Username must be at least 5 characters long.
+                </div>
+                <div [hidden]="!username.errors.maxlength">
+                    Username cannot be more than 30 chars.
+                </div>
+            </div>
+        </div>
+
+        <br/>
+        <div class="form group">
+            <label for="password">
+                <b>Password</b>
+            </label>
+            <input type="password" required minlength="5" maxlength="30" name="password" class="form-control" [(ngModel)]="user.password" #password="ngModel">
+            <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
+                <div [hidden]="!password.errors.required">
+                    Username is required!
+                </div>
+            </div>
+        </div>
+
+        <br/>
+        <input type="submit" [disabled]="!login.form.valid" value="Login" class="btn btn-primary">
+    </form>
 </div>

@@ -36,40 +36,27 @@ export class TaskFormComponent implements OnInit {
   }
 
   processForm(){
-    //this.task.teamMembers.push(this.teamMembers);
-    //console.log("Team: ",this.teamMembers);
-
+    
     if(this.task.id==undefined){
       this.task_object = new TaskObject(this.task, this.teamMembers);
+      
       this._taskService.addTaskWithMembers(this.task_object).subscribe((task_object)=>{
         console.log(task_object);
         this._router.navigate(['/view_tasks']);
       }, (error)=>{
         console.log(error);
       });
+
       /*this._taskService.addTasks(this.task).subscribe((task)=>{
         console.log(task);
         this._router.navigate(['/view_tasks']);
       }, (error)=>{
         console.log(error);
       });*/
-    }else{
+    } 
+    else{
       this._router.navigate(['/edit_tasks']);
-      /*this._taskService.updateTask(this.task).subscribe((task)=>{
-        console.log(task);
-        
-      }, (error)=>{
-        console.log(error);
-      });*/
     }
-  }
-
-  selectedValues(){
-    /*let teamMembers: TeamMember[] = form.controls['selectedUsers'].value;
-    for (let i=0; i < teamMembers.length; i++) {
-       console.log("User Id: " + teamMembers[i].userId);
-       console.log("User Name: " + teamMembers[i].userName);
-    }*/
   }
 
 }

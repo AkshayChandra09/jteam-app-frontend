@@ -1,0 +1,39 @@
+
+<div class="container" style="margin-left:40%">
+<h1>Add New User</h1>
+  <hr>
+  <br>
+  <form (ngSubmit)="userRegisterForm()">
+    <div class="form group">
+        <label for="name"><b>Name</b></label>
+        <input type="text" name="name" class="form-control" [(ngModel)]="user.name">
+    </div><br>
+      <div class="form group">
+          <label for="user_name"><b>UserName</b></label>
+          <input type="text" name="user_name" class="form-control" [(ngModel)]="user.user_name">
+      </div><br>
+
+      <div class="form group">
+          <label for="email_id"><b>Email Id</b></label>
+          <input type="text" name="email_id" class="form-control" [(ngModel)]="user.email_id">
+      </div><br>
+      <div class="form group">
+          <label for="role"><b>Role</b></label><br/>
+          <select style="width:110px; height:20px" name="role" [(ngModel)]="user.role">
+              <option *ngFor="let pt of role">{{pt}}</option>
+          </select>
+      </div>
+      <br/>
+      <div class="form group">
+          <label for="password"><b>Password</b></label>
+          <input type="password" name="password" class="form-control" [(ngModel)]="user.password">
+      </div><br>
+      <div class="form group">
+          <label for="confirm_password"><b>Confirm Password</b></label>
+          <input type="password" name="confirm_password" class="form-control" [(ngModel)]="user.confirm_password">
+      </div><br>
+
+      <input type="submit" value="Register" class="btn btn-success">
+    </form>
+</div>
+

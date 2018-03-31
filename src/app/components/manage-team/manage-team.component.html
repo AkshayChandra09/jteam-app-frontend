@@ -1,0 +1,41 @@
+<div class="container">
+  <h1>Manage My Team</h1>
+  <hr>
+
+  <table class="manage-team">
+    <tr>
+      <td>
+        <select style="width:200px; height:200px" class="selectpicker" multiple name="selectedMembers" [(ngModel)]="projectMembers">
+          <option *ngFor="let member of usersArray" [ngValue]="member">
+            {{ member.user_name }}
+          </option>
+        </select> 
+        <br/><br/>
+        <button class="btn btn-primary" (click)="newTeamMembers()">Add to team</button>
+        <br/>
+        <br/>
+        <p>
+          <b>Select members from list and click add button.</b>
+        </p>
+        <hr>
+      </td>
+      <td class="section1">
+        <table class="table table-striped">
+          <thead>
+            <th>Id</th>
+            <th>Name</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td>{{user.id}}</td>
+              <td>{{user.user_name}}</td>
+              <td>
+                <button class="btn btn-danger" (click)="deleteProjectMember(user.id)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>

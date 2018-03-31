@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { TaskService } from '../../shared-service/task.service';
 import { Task } from '../../task'; 
 import {Router, RouterLink} from '@angular/router';
 
+import {User} from '../../user';
+import { ProjectService } from '../../shared-service/project.service';
+
+import { Dashboard } from '../../dashboard';
 
 @Component({
   selector: 'app-listtasks',
@@ -13,8 +17,11 @@ export class ListtasksComponent implements OnInit {
 
   private tasks:Task[];
   private members:string[];
+  private users:User[];
 
-  constructor(private _taskService:TaskService, private _router:Router) { }
+  project:Dashboard;
+
+  constructor(private _taskService:TaskService, private _projectService:ProjectService, private _router:Router) { }
 
   ngOnInit() {
     this._taskService.getTasks().subscribe((tasks)=>{
@@ -23,10 +30,10 @@ export class ListtasksComponent implements OnInit {
     }, (error)=> {
       console.log(error);
     })
+    this.project = this._projectService.getSelectedProject_id();
   }
 
   updateTask(task){
-      //this._taskService.setter(task);
       this._router.navigate(['/edit_task/', task.id]);
   }
   newTask(){
@@ -38,17 +45,18 @@ export class ListtasksComponent implements OnInit {
   deleteTask(task){
       this._taskService.deleteTask(task.id).subscribe((data)=>{
         this.tasks.splice(this.tasks.indexOf(task,1));
+        this._taskService.getTasks().subscribe((tasks)=>{
+          this.tasks=tasks;
+        }, (error)=> {
+          console.log(error);
+        })
       },(error)=>{
         console.log(error);
       });
   }
   
   viewMembers(task){
-    this._taskService.getMembers(task.id).subscribe((members)=>{
-      console.log(members);
-    },(error)=>{
-      console.log(error);
-    });
+    this._router.navigate(['/task_members/', task.id]);
   }
 }
 
