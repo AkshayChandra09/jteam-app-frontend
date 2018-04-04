@@ -5,7 +5,25 @@
       [id]="id"
       [width]="width"
       [height]="height"
-      [type]="type"
+      [type]="type_bar"
       [dataFormat]="dataFormat"
       [dataSource]="dataSource"
   ></fusioncharts>
+  <hr>
+  <h1>Tasks Statistics</h1>
+  <fusioncharts
+  [width]="width"
+  [height]="height"
+  [type]="type_3Dpie"
+  [dataFormat]="dataFormat"
+  [dataSource]="dataSource_pie">
+</fusioncharts>
+<br/>
+<h1>Deliverables Statistics</h1>
+<fusioncharts
+    [width]="width"
+    [height]="height"
+    [type]="type_mscombi"
+    [dataFormat]="dataFormat"
+    [dataSource]="dataSource_mscombi2d">
+</fusioncharts>

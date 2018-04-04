@@ -22,8 +22,6 @@ export class ProjectService {
 
   private dashboard:Dashboard;
 
-  //private selectedProject = new BehaviorSubject<string>("");
-
   public selectedProject_id:Dashboard;
 
   constructor(private _http:Http) { }
@@ -44,6 +42,10 @@ export class ProjectService {
     return this._http.post(this.baseUrl+'/addProjectMembers', JSON.stringify(team_members), this.options).map((response:Response) => response.json()).catch(this.errorHandler);
   }
 
+  getStats(){
+    return this._http.get(this.baseUrl+'/statistics/', this.options).map((response:Response) => response.json()).catch(this.errorHandler);
+  }
+  
   setSelectedProject_id(proj:Dashboard){
     this.selectedProject_id = proj;
   }
