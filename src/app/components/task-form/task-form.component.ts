@@ -20,6 +20,7 @@ export class TaskFormComponent implements OnInit {
   teamMembers: User[];
   usersArray:User[];
   task_object:TaskObject;
+  proj_id:Number;
 
   status = ["Pending","In-Progress","Completed"];
   priority = ["High", "Medium", "Low"];
@@ -38,10 +39,11 @@ export class TaskFormComponent implements OnInit {
   processForm(){
     
     if(this.task.id==undefined){
-      this.task_object = new TaskObject(this.task, this.teamMembers);
-      
+      this.proj_id = this._taskService.getProject_id(); 
+
+      this.task_object = new TaskObject(this.task, this.teamMembers, this.proj_id);
+      //this.task_object.project_id = this.proj_id;
       this._taskService.addTaskWithMembers(this.task_object).subscribe((task_object)=>{
-        console.log(task_object);
         this._router.navigate(['/view_tasks']);
       }, (error)=>{
         console.log(error);

@@ -1,0 +1,51 @@
+<div class="container">
+  <h1>Add New Project</h1>
+  <hr>
+  <br>
+  <form (ngSubmit)="projectForm()">
+    <div class="form group">
+      <label for="project">
+        <b>Project Name</b>
+      </label>
+      <input type="text" name="task_name" class="form-control" [(ngModel)]="project.project_name">
+    </div>
+    <br/>
+    <div class="form-group">
+      <label for="project_description"><b>Project Description</b></label>
+      <textarea class="form-control" name="project_desc" rows="4" [(ngModel)]="project.project_desc"></textarea>
+    </div>
+    <div class="form group">
+      <label for="start_date">
+        <b>Start Date</b>
+      </label>
+      <input type="date" name="project_start_date" class="form-control" [(ngModel)]="project.project_start_date">
+    </div>
+    <br/>
+    <div class="form group">
+      <label for="budget">
+        <b>Budget</b>
+      </label>
+      <br/>
+      <input type="text" name="project_budget" class="form-control" [(ngModel)]="project.project_budget">
+    </div>
+    <br/>
+    <div class="form group">
+      <label for="admin">
+        <b>Admin</b>
+      </label>
+      <br/>
+      <input type="text" name="project_admin" class="form-control" [(ngModel)]="project.project_admin">
+    </div>
+    <br/>
+    <div class="form group">
+      <label for="vendor_name">
+        <b>Vendor Name</b>
+      </label>
+      <br/>
+      <input type="text" name="project_budget" class="form-control" [(ngModel)]="project.project_vendor_name">
+
+    </div>
+    <br/>
+    <input type="submit" value="Save" class="btn btn-success">
+  </form>
+</div>

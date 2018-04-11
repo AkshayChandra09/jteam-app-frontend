@@ -21,16 +21,21 @@ export class ListtasksComponent implements OnInit {
 
   project:Dashboard;
 
+  msg:boolean = false;
+  
   constructor(private _taskService:TaskService, private _projectService:ProjectService, private _router:Router) { }
 
   ngOnInit() {
-    this._taskService.getTasks().subscribe((tasks)=>{
+    this.project = this._projectService.getSelectedProject_id();
+    this._taskService.getProjectTasks().subscribe((tasks)=>{
       console.log(tasks);
       this.tasks=tasks;
+      if(this.tasks.length==0){
+        this.msg = true;
+      }
     }, (error)=> {
       console.log(error);
-    })
-    this.project = this._projectService.getSelectedProject_id();
+    }) 
   }
 
   updateTask(task){

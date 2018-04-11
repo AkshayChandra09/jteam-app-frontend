@@ -1,9 +1,20 @@
 <div class="container" style="margin-left:10%">
-  <h1>Dashboard</h1>
+  <h1>
+    Dashboard  
+    <button class="btn btn-primary" (click)="newProject()" style="margin-left:500px">Add Project</button>
+  </h1>
   <br/>
-  <p>
-    <b>Projects are enlisted on this page</b>
-  </p>
+  <hr>
+  <div class="row" style="padding:10px; margin-left:20px" align="center">
+      <fusioncharts
+      [id]="id"
+      [width]="width"
+      [height]="height"
+      [type]="type_bar"
+      [dataFormat]="dataFormat"
+      [dataSource]="dataSource"
+  ></fusioncharts>
+  </div>
   <hr>
     <div class="row">
       <div *ngFor="let proj of dashboard" style="padding:10px;">

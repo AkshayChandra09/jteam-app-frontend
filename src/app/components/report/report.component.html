@@ -1,29 +1,40 @@
 <h1>
     {{title}}
-  </h1>
-  <fusioncharts
-      [id]="id"
-      [width]="width"
-      [height]="height"
-      [type]="type_bar"
-      [dataFormat]="dataFormat"
-      [dataSource]="dataSource"
-  ></fusioncharts>
-  <hr>
-  <h1>Tasks Statistics</h1>
-  <fusioncharts
-  [width]="width"
-  [height]="height"
-  [type]="type_3Dpie"
-  [dataFormat]="dataFormat"
-  [dataSource]="dataSource_pie">
+</h1>
+
+<fusioncharts [width]="width" [height]="height" [type]="type_3Dpie" [dataFormat]="dataFormat" [dataSource]="dataSource_pie">
 </fusioncharts>
 <br/>
-<h1>Deliverables Statistics</h1>
-<fusioncharts
-    [width]="width"
-    [height]="height"
-    [type]="type_mscombi"
-    [dataFormat]="dataFormat"
-    [dataSource]="dataSource_mscombi2d">
-</fusioncharts>
+<hr>
+<h3>Admin: Harvey Specter
+    <h3>
+        <br>
+        <h4>Tasks:</h4>
+        <table class="table table-striped">
+            <thead>
+                <th>Pending</th>
+                <th>Completed</th>
+                <th>Total</th>
+                <th>% Complete</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>10</td>
+                    <td>20</td>
+                    <td>30</td>
+                    <td>70</td>
+                </tr>
+            </tbody>
+            <h4>Other:</h4>
+            <thead>
+                <th>Team Members</th>
+                <th>Budget ($)</th>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <td>10</td>
+                    <td>200000</td>
+                </tr>
+            </tbody>
+        </table>

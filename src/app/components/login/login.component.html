@@ -9,7 +9,7 @@
             <label for="user_name">
                 <b>Username</b>
             </label>
-            <input type="text" required minlength="5" maxlength="30" name="user_name" class="form-control" [(ngModel)]="user.user_name"
+            <input type="text" required minlength="3" maxlength="30" name="user_name" class="form-control" [(ngModel)]="user.user_name"
                 #username="ngModel">
             <div *ngIf="username.errors && (username.dirty || username.touched)" class="alert alert-danger">
                 <div [hidden]="!username.errors.required">

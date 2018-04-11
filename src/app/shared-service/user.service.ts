@@ -7,6 +7,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import { User } from '../user';
+import {TokenParams} from '../token-params';
+
 
 @Injectable()
 export class UserService {
@@ -17,6 +19,9 @@ export class UserService {
   private options = new RequestOptions({headers:this.headers});
 
   private user:User;
+
+  AccesToken:string="";
+  private login_api = 'http://localhost:5000/login';
 
   constructor(private _http:Http) { }
 
@@ -31,6 +36,13 @@ export class UserService {
   createUser(user:User){
     console.log(user);
     return this._http.post(this.baseUrl+'/form', JSON.stringify(user), this.options).map((response:Response) => response.json()).catch(this.errorHandler);
+  }
+
+  //for authentication
+  login(username:string, password:string): Observable<TokenParams>{
+   // var data = "username="+username+"&password="+password;
+    var login_obj = {'username':username, 'password':password};
+    return this._http.post(this.login_api,JSON.stringify(login_obj),this.options).map(res=>res.json());
   }
 
   errorHandler(error:Response){

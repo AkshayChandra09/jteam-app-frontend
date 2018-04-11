@@ -20,6 +20,8 @@ export class TaskService {
 
   private task:Task;
 
+  public project_id:Number;
+
   constructor(private _http:Http) { }
 
   getTasks(){
@@ -35,7 +37,7 @@ export class TaskService {
   }
 
   addTaskWithMembers(task: TaskObject){
-    console.log(task);
+    //task.project_id = this.project_id;
     return this._http.post(this.baseUrl+'/add_task_with_members', JSON.stringify(task), this.options).map((response:Response) => response.json()).catch(this.errorHandler);
   }
 
@@ -55,6 +57,10 @@ export class TaskService {
     return this._http.delete(this.baseUrl+'/deleteMember/'+task_id+'/'+uid,this.options).map((response:Response)=>response.json()).catch(this.errorHandler);
   }
 
+  getProjectTasks(){
+    return this._http.get(this.baseUrl+'/showTasksInProject/'+this.project_id, this.options).map((response:Response) => response.json()).catch(this.errorHandler);
+  }
+
 
   errorHandler(error:Response){
       return Observable.throw(error||"SERVER ERROR");
@@ -66,6 +72,14 @@ export class TaskService {
 
   getter(){
     return this.task;
+  }
+
+  setProject_id(pid:Number){
+    this.project_id = pid;
+  }
+
+  getProject_id(){
+    return this.project_id;
   }
 
 }

@@ -25,6 +25,7 @@ import { LoginComponent } from './components/login/login.component';
 import { TaskMembersComponent } from './components/task-members/task-members.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ManageTeamComponent } from './components/manage-team/manage-team.component';
+import { AddProjectComponent } from './components/add-project/add-project.component';
 
 
 
@@ -40,7 +41,8 @@ const appRoutes:Routes = [
   {path:'manage_team', component:ManageTeamComponent},
   {path:'edit_task/:task_id', component:EditTaskComponent},
   {path:'statistics', component:ReportComponent},
-  {path:'task_members/:task_id', component:TaskMembersComponent}
+  {path:'task_members/:task_id', component:TaskMembersComponent},
+  {path:'add_project', component:AddProjectComponent}
 ]
 
 @NgModule({
@@ -56,6 +58,7 @@ const appRoutes:Routes = [
     TaskMembersComponent,
     RegisterComponent,
     ManageTeamComponent,
+    AddProjectComponent,
   ],
   imports: [
     BrowserModule,

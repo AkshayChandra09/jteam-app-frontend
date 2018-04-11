@@ -3,7 +3,10 @@ import { User } from './user';
 
 export class TaskObject {
 
-    constructor(public task_details:Task, public members:User[]) {
+    public project_id:Number;
+
+    constructor(public task_details:Task, public members:User[], proj_id:Number) {
+        this.project_id = proj_id;
     }
     
 }
