@@ -61,6 +61,9 @@ export class TaskService {
     return this._http.get(this.baseUrl+'/showTasksInProject/'+this.project_id, this.options).map((response:Response) => response.json()).catch(this.errorHandler);
   }
 
+  getMemberTasks(pid:Number, uid:Number){
+    return this._http.get(this.baseUrl+'/showMemberTasks/'+pid+'/'+uid, this.options).map((response:Response) => response.json()).catch(this.errorHandler);
+  }
 
   errorHandler(error:Response){
       return Observable.throw(error||"SERVER ERROR");

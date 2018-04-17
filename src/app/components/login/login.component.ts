@@ -18,8 +18,9 @@ export class LoginComponent implements OnInit {
 
   private user = new User();
   tokenParams: TokenParams;
-
-
+  username:string;
+  password:string;
+  user1=new User();
 
   constructor(private _userService: UserService, private _router: Router) { }
 
@@ -38,6 +39,26 @@ export class LoginComponent implements OnInit {
   }
 
   loginForm() {
+    alert('data entered..');
+    
+    this._userService.userLogin(this.user.user_name, this.user.password).subscribe((user)=>{
+      console.log(user);
+      this.user = user; 
+      if(this.user.role === 'Admin')
+        this._router.navigate(['/dashboard']);
+      else      
+        this._router.navigate(['/']);
+    }, (error)=>{
+      console.log(error);
+    });
+
+    /*if(this.username==='admin' && this.password==='admin'){
+      this._router.navigate(['/dashboard']);
+    }
+    else{
+      alert('Incorrect Username or Password!');
+    }*/
+    
     //this._router.navigate(['/dashboard']);
     /*this._userService.tryLogin(this.user).subscribe((user)=>{
       //console.log(user);
@@ -46,12 +67,12 @@ export class LoginComponent implements OnInit {
       console.log(error);
     });*/
 
-    this._userService.login(this.user.user_name, this.user.password)
+   /* this._userService.login(this.user.user_name, this.user.password)
       .subscribe((data) => {
         this.tokenParams = data;
         this._userService.AccesToken = this.tokenParams.access_token;
         this._router.navigate(['/dashboard']);
-      });
+      });*/
   }
 
   registerUser() {

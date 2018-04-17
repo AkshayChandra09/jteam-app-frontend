@@ -24,6 +24,8 @@ export class ProjectService {
 
   public selectedProject_id:Dashboard;
 
+  public project_id:Number;
+
   constructor(private _http:Http) { }
 
   addProject(project:Project){
@@ -49,9 +51,18 @@ export class ProjectService {
   }
 
   getStats(){
-    return this._http.get(this.baseUrl+'/statistics/', this.options).map((response:Response) => response.json()).catch(this.errorHandler);
+    return this._http.get(this.baseUrl+'/dashboard_statistics', this.options).map((response:Response) => response.json()).catch(this.errorHandler);
   }
   
+  getProjectStats(pid:Number){
+    //console.log(pid);
+    return this._http.get(this.baseUrl+'/project_statistics/'+pid, this.options).map((response:Response) => response.json()).catch(this.errorHandler);
+  }
+
+  getMembersProject(uid:number){
+    return this._http.get(this.baseUrl+'/showMembersProjectsList/'+uid, this.options).map((response:Response) => response.json()).catch(this.errorHandler);
+  }
+
   setSelectedProject_id(proj:Dashboard){
     this.selectedProject_id = proj;
   }
@@ -64,5 +75,12 @@ export class ProjectService {
     return Observable.throw(error||"SERVER ERROR");
   }
   
+  setProject_id(pid:Number){
+    this.project_id = pid;
+  }
+
+  getProject_id(){
+    return this.project_id;
+  }
 
 }

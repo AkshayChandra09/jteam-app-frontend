@@ -26,6 +26,8 @@ import { TaskMembersComponent } from './components/task-members/task-members.com
 import { RegisterComponent } from './components/register/register.component';
 import { ManageTeamComponent } from './components/manage-team/manage-team.component';
 import { AddProjectComponent } from './components/add-project/add-project.component';
+import { MemberDashboardComponent } from './components/member-dashboard/member-dashboard.component';
+import { MemberTasksComponent } from './components/member-tasks/member-tasks.component';
 
 
 
@@ -42,7 +44,9 @@ const appRoutes:Routes = [
   {path:'edit_task/:task_id', component:EditTaskComponent},
   {path:'statistics', component:ReportComponent},
   {path:'task_members/:task_id', component:TaskMembersComponent},
-  {path:'add_project', component:AddProjectComponent}
+  {path:'add_project', component:AddProjectComponent},
+  {path:'member_dashboard', component:MemberDashboardComponent},
+  {path:'member_tasks', component:MemberTasksComponent}
 ]
 
 @NgModule({
@@ -59,6 +63,8 @@ const appRoutes:Routes = [
     RegisterComponent,
     ManageTeamComponent,
     AddProjectComponent,
+    MemberDashboardComponent,
+    MemberTasksComponent,
   ],
   imports: [
     BrowserModule,

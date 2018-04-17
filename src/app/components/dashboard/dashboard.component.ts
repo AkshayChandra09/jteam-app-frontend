@@ -76,7 +76,9 @@ export class DashboardComponent implements OnInit {
 
   selectedProject(proj) {
     //console.log(this.project_id); 
-    this._projectService.setSelectedProject_id(proj);
+    this._projectService.setSelectedProject_id(proj); //delete this one
+    
+    this._projectService.setProject_id(proj.id);
     this._taskService.setProject_id(proj.id);
     this._router.navigate(['/view_tasks']);
   }

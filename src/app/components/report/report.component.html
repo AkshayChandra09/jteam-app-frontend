@@ -1,31 +1,34 @@
 <h1>
-    {{title}}
+    {{title}} 
 </h1>
 
 <fusioncharts [width]="width" [height]="height" [type]="type_3Dpie" [dataFormat]="dataFormat" [dataSource]="dataSource_pie">
 </fusioncharts>
 <br/>
 <hr>
-<h3>Admin: Harvey Specter
+<h3><b>Admin: </b> {{stats.admin_name}}
     <h3>
         <br>
-        <h4>Tasks:</h4>
+        <h4><b>Tasks: </b></h4>
         <table class="table table-striped">
             <thead>
                 <th>Pending</th>
+                <th>In-progress</th>
                 <th>Completed</th>
                 <th>Total</th>
                 <th>% Complete</th>
             </thead>
             <tbody>
                 <tr>
-                    <td>10</td>
-                    <td>20</td>
-                    <td>30</td>
-                    <td>70</td>
+                    <td>{{stats.pending_tasks}}</td> 
+                    <td>{{stats.inprogress_tasks}}</td>
+                    <td>{{stats.completed_tasks}}</td>
+                    <td>{{stats.total_tasks}}</td> 
+                    <td>{{stats.percent_complete}}</td>
                 </tr>
             </tbody>
-            <h4>Other:</h4>
+            <br/>
+            <h4><b>Other:</b></h4>
             <thead>
                 <th>Team Members</th>
                 <th>Budget ($)</th>
@@ -33,8 +36,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>10</td>
-                    <td>200000</td>
+                    <td>{{stats.numberOfMembers}}</td>
+                    <td>{{stats.budget}}</td>
                 </tr>
             </tbody>
         </table>

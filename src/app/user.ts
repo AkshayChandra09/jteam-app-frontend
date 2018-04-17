@@ -3,7 +3,7 @@ export class User {
     name:string;
     user_name:string;
     email_id:string;
-    Role:string;
+    role:string;
     password:string;
     confirm_password:string;
 }

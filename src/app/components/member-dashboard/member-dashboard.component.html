@@ -1,0 +1,19 @@
+<div class="container" style="margin-left:10%">
+  <h1>
+    Team Member Dashboard
+  </h1>
+  <br/>
+  <hr>
+  <div class="row">
+    <div *ngFor="let proj of dashboard" style="padding:10px;">
+      <div class="card" style="width: 20rem;">
+        <div class="card-block" style="padding:10px; text-align: left">
+          <h4 class="card-title">{{proj.project_name}} {{proj.project_id}}</h4>
+          <p class="card-text">{{proj.project_desc}}</p>
+          <button class="btn btn-primary" (click)="selectedProject(proj)">Dive In</button>
+        </div>
+      </div>
+      <br/>
+    </div>
+  </div>
+</div>

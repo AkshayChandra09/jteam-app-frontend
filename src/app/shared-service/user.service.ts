@@ -29,6 +29,11 @@ export class UserService {
     return this._http.post(this.baseUrl+'/login', JSON.stringify(user), this.options).map((response:Response) => response.json()).catch(this.errorHandler);
   }
 
+  userLogin(uname:string, pass:string){
+    var login_obj = {'user_name':uname, 'password':pass};
+    return this._http.post(this.baseUrl+'/login', JSON.stringify(login_obj), this.options).map((response:Response) => response.json()).catch(this.errorHandler);
+  }
+
   getUsers(){
     return this._http.get(this.baseUrl+'/getUsers', this.options).map((response:Response) => response.json()).catch(this.errorHandler);
   }
@@ -38,7 +43,7 @@ export class UserService {
     return this._http.post(this.baseUrl+'/form', JSON.stringify(user), this.options).map((response:Response) => response.json()).catch(this.errorHandler);
   }
 
-  //for authentication
+  //for authentication using pyjwt
   login(username:string, password:string): Observable<TokenParams>{
    // var data = "username="+username+"&password="+password;
     var login_obj = {'username':username, 'password':password};
