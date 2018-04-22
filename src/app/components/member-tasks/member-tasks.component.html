@@ -1,5 +1,6 @@
-<div class="container">
-  <h1>Task Manager {{project.id}} </h1>
+<a [routerLink]="['/member_dashboard']" class="btn btn-link"><b>Dashboard</b></a>
+<div style="margin-left:200px">
+  <h1>Task Manager {{project_id}}</h1>
   <br>
   <div *ngIf="msg; else elseBlock">
     <h2>No Tasks Added In This Project!</h2>
@@ -22,10 +23,11 @@
           <td>{{task.task_priority}}</td>
           <td>{{task.task_deadline | date:"MM/dd/yyyy"}}</td>
           <td>
-            <form (ngSubmit)="updateForm()">
+            <form (ngSubmit)="updateForm(task)">
               <select style="width:65px; height:20px" name="task_status" value="{{task.task_status}}" [(ngModel)]="task.task_status">
                 <option *ngFor="let st of status">{{st}}</option>
               </select>
+              <input type="submit" value="Save" class="btn btn-success btn-sm">
             </form>
           </td>
         </tr>

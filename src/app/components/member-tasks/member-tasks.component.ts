@@ -4,6 +4,7 @@ import { TaskService } from '../../shared-service/task.service';
 import { Task } from '../../task'; 
 import { ProjectService } from '../../shared-service/project.service';
 
+
 @Component({
   selector: 'app-member-tasks',
   templateUrl: './member-tasks.component.html',
@@ -13,6 +14,8 @@ export class MemberTasksComponent implements OnInit {
 
   private tasks:Task[];
   project_id:Number;
+
+
   user_id:Number=3;
   status = ["Pending","In-Progress","Completed"];
 
@@ -20,7 +23,6 @@ export class MemberTasksComponent implements OnInit {
 
   ngOnInit() {
     this.project_id = this._projectService.getProject_id();
-
     this._taskService.getMemberTasks(this.project_id,this.user_id).subscribe((tasks)=>{
       console.log(tasks);
       this.tasks=tasks;
@@ -30,7 +32,18 @@ export class MemberTasksComponent implements OnInit {
 
   }
 
-  updateForm(){
+  updateForm(task){
+    this._taskService.updateTask(task).subscribe((task)=>{
+      console.log(task);
+      alert('Status Updated');
+      this._taskService.getMemberTasks(this.project_id,this.user_id).subscribe((tasks)=>{
+        this.tasks=tasks;
+      }, (error)=> {
+        console.log(error);
+      });
+    }, (error)=>{
+      console.log(error);
+    });
     
   }
 

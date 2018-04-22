@@ -17,8 +17,9 @@
 <div class="app-container">
   <div class="page-content">
     <div class="row">
-
-      <div class="col-md-2" *ngIf="_router.url !== '/login' && _router.url !== '/dashboard' ">
+       
+      <div class="col-md-2" *ngIf="_router.url !== '/login' && _router.url !== '/dashboard' && _router.url !== '/member_dashboard' 
+          && _router.url !== '/member_tasks' && _router.url !== '/'">
 
         <div class="sidebar content-box" style="display: block;">
           <ul class="nav">

@@ -38,16 +38,16 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
 const appRoutes:Routes = [
   {path:'login', component:LoginComponent},
   {path:'register', component:RegisterComponent},
-  {path:'dashboard', component:DashboardComponent, canActivate:[UrlPermission]},
-  {path:'view_tasks', component:ListtasksComponent, canActivate:[UrlPermission]},
-  {path:'add_task', component:TaskFormComponent, canActivate:[UrlPermission]},
-  {path:'manage_team', component:ManageTeamComponent, canActivate:[UrlPermission]},
-  {path:'edit_task/:task_id', component:EditTaskComponent, canActivate:[UrlPermission]},
-  {path:'statistics', component:ReportComponent, canActivate:[UrlPermission]},
-  {path:'task_members/:task_id', component:TaskMembersComponent, canActivate:[UrlPermission]},
-  {path:'add_project', component:AddProjectComponent, canActivate:[UrlPermission]},
-  {path:'member_dashboard', component:MemberDashboardComponent, canActivate:[UrlPermission]},
-  {path:'member_tasks', component:MemberTasksComponent, canActivate:[UrlPermission]},
+  {path:'dashboard', component:DashboardComponent}, //canActivate:[UrlPermission]
+  {path:'view_tasks', component:ListtasksComponent},
+  {path:'add_task', component:TaskFormComponent},
+  {path:'manage_team', component:ManageTeamComponent},
+  {path:'edit_task/:task_id', component:EditTaskComponent},
+  {path:'statistics', component:ReportComponent},
+  {path:'task_members/:task_id', component:TaskMembersComponent},
+  {path:'add_project', component:AddProjectComponent},
+  {path:'member_dashboard', component:MemberDashboardComponent},
+  {path:'member_tasks', component:MemberTasksComponent},
 
   {path:'**', redirectTo: '/login'}
 ];
