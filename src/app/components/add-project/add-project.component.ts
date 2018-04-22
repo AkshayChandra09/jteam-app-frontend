@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Project} from '../../project';
 import {Router, RouterLink} from '@angular/router';
 import { ProjectService } from '../../shared-service/project.service';
+import {AuthService} from '../../shared-service/auth.service';
+import {User} from '../../user';
 
 @Component({
   selector: 'app-add-project',
@@ -11,8 +13,12 @@ import { ProjectService } from '../../shared-service/project.service';
 export class AddProjectComponent implements OnInit {
 
   private project = new Project();
+  currentUser:User;
 
-  constructor(private _projectService:ProjectService, private _router:Router) { }
+  constructor(private _projectService:ProjectService, private _router:Router,private _authService:AuthService) { 
+
+    this.currentUser=JSON.parse(localStorage.getItem('currentUser'));
+  }
 
   ngOnInit() {
   }
@@ -20,7 +26,6 @@ export class AddProjectComponent implements OnInit {
   projectForm(){
     if(this.project.id==undefined){
       this._projectService.addProject(this.project).subscribe((project)=>{
-        console.log(project);
         this._router.navigate(['/dashboard']);
       }, (error)=>{
         console.log(error);

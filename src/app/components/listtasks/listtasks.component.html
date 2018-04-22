@@ -23,20 +23,17 @@
       </thead>
       <tbody>
         <tr *ngFor="let task of tasks">
-          <td>{{task.id}}</td>
-          <td>{{task.task_name}}</td>
-          <td>{{task.task_assigned_date | date:"MM/dd/yyyy"}}</td>
-          <td>{{task.task_priority}}</td>
-          <td>{{task.task_deadline | date:"MM/dd/yyyy"}}</td>
-          <td>{{task.task_status}}</td>
-          <td>
+          <td *ngIf="task && task.id">{{task.id}}</td>
+          <td *ngIf="task && task.task_name">{{task.task_name}}</td>
+          <td *ngIf="task && task.task_assigned_date">{{task.task_assigned_date | date:"MM/dd/yyyy"}}</td>
+          <td *ngIf="task && task.task_priority">{{task.task_priority}}</td>
+          <td *ngIf="task && task.task_deadline">{{task.task_deadline | date:"MM/dd/yyyy"}}</td>
+          <td *ngIf="task && task.task_status">{{task.task_status}}</td>
+          <td *ngIf="task">
             <button class="btn btn-primary" (click)="viewMembers(task)">View</button>
           </td>
-          <td>
+          <td *ngIf="task">
             <button class="btn btn-primary" (click)="updateTask(task)">Edit</button>
-            <!--
-          <button class="btn btn-primary"><a [routerLink]="['/edit_task', 'task.task_id']">Edit</a></button>
-        -->
             <button class="btn btn-danger" (click)="deleteTask(task)">Delete</button>
           </td>
         </tr>

@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { ListtasksComponent } from './components/listtasks/listtasks.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
 import { TaskService } from './shared-service/task.service';
-import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { EditTaskComponent } from './components/edit-task/edit-task.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProjectService } from './shared-service/project.service';
@@ -28,6 +27,8 @@ import { ManageTeamComponent } from './components/manage-team/manage-team.compon
 import { AddProjectComponent } from './components/add-project/add-project.component';
 import { MemberDashboardComponent } from './components/member-dashboard/member-dashboard.component';
 import { MemberTasksComponent } from './components/member-tasks/member-tasks.component';
+import { UrlPermission } from './urlPermission/url.permission';
+import { AuthService } from './shared-service/auth.service';
 
 
 
@@ -35,26 +36,27 @@ import { MemberTasksComponent } from './components/member-tasks/member-tasks.com
 FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
 
 const appRoutes:Routes = [
-  {path:'', component:LoginComponent},
+  {path:'login', component:LoginComponent},
   {path:'register', component:RegisterComponent},
-  {path:'dashboard', component:DashboardComponent},
-  {path:'view_tasks', component:ListtasksComponent},
-  {path:'add_task', component:TaskFormComponent},
-  {path:'manage_team', component:ManageTeamComponent},
-  {path:'edit_task/:task_id', component:EditTaskComponent},
-  {path:'statistics', component:ReportComponent},
-  {path:'task_members/:task_id', component:TaskMembersComponent},
-  {path:'add_project', component:AddProjectComponent},
-  {path:'member_dashboard', component:MemberDashboardComponent},
-  {path:'member_tasks', component:MemberTasksComponent}
-]
+  {path:'dashboard', component:DashboardComponent, canActivate:[UrlPermission]},
+  {path:'view_tasks', component:ListtasksComponent, canActivate:[UrlPermission]},
+  {path:'add_task', component:TaskFormComponent, canActivate:[UrlPermission]},
+  {path:'manage_team', component:ManageTeamComponent, canActivate:[UrlPermission]},
+  {path:'edit_task/:task_id', component:EditTaskComponent, canActivate:[UrlPermission]},
+  {path:'statistics', component:ReportComponent, canActivate:[UrlPermission]},
+  {path:'task_members/:task_id', component:TaskMembersComponent, canActivate:[UrlPermission]},
+  {path:'add_project', component:AddProjectComponent, canActivate:[UrlPermission]},
+  {path:'member_dashboard', component:MemberDashboardComponent, canActivate:[UrlPermission]},
+  {path:'member_tasks', component:MemberTasksComponent, canActivate:[UrlPermission]},
+
+  {path:'**', redirectTo: '/login'}
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     ListtasksComponent,
     TaskFormComponent,
-    AdminPanelComponent,
     EditTaskComponent,
     DashboardComponent,
     ReportComponent,
@@ -73,7 +75,7 @@ const appRoutes:Routes = [
     RouterModule.forRoot(appRoutes),
     FusionChartsModule,
   ],
-  providers: [TaskService, ProjectService, UserService],
+  providers: [TaskService, ProjectService, UserService, UrlPermission, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

@@ -5,8 +5,10 @@ import { Router, RouterLink } from '@angular/router';
 
 import { UserService } from '../../shared-service/user.service';
 import { TaskService } from '../../shared-service/task.service';
+import {AuthService} from '../../shared-service/auth.service';
 
 import { TeamObject } from '../../team-object';
+import {User} from '../../user';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,9 +29,13 @@ export class DashboardComponent implements OnInit {
   type_bar = 'column2d';
   title = 'Project Satistics';
   teamObject: TeamObject[];
+  currentUser:User;
 
   constructor(private _projectService: ProjectService, private _userService: UserService, private _router: Router,
-    private _taskService: TaskService) { }
+    private _taskService: TaskService, private _authService:AuthService) { 
+
+      this.currentUser=JSON.parse(localStorage.getItem('currentUser'));
+    }
 
   ngOnInit() {
     // this.displaytoken = this._userService.AccesToken;
@@ -85,6 +91,17 @@ export class DashboardComponent implements OnInit {
 
   newProject() {
     this._router.navigate(['/add_project']);
+  }
+
+  logOut(){
+    localStorage.removeItem('currentUser');
+    this._router.navigate(['/login']);
+    /*this._authService.logOut().subscribe(
+      data => {
+        this._router.navigate(['/login']);
+    },
+    error => {}
+    );*/
   }
 
 }

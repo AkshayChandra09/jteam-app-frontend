@@ -39,15 +39,49 @@ export class ReportComponent implements OnInit {
   ngOnInit() {
     this.project_id = this._projectService.getProject_id();
     this._projectService.getProjectStats(this.project_id).subscribe((stats)=>{
+        
         this.stats = stats;
 
-        console.log(this.stats);
-
+        //console.log("completed_tasks in ng oninit: "+this.stats.completed_tasks);
+        this.dataSource_pie = {
+            "chart": {
+                "caption": "Project Progress Statistics",
+                "subcaption": "Tasks Analysis",
+                "startingangle": "120",
+                "showlabels": "0",
+                "showlegend": "1",
+                "enablemultislicing": "0",
+                "slicingdistance": "15",
+                "showpercentvalues": "1",
+                "showpercentintooltip": "0",
+                "plottooltext": "$label : $datavalue",
+                "theme": "ocean",
+                "smartLineColor": "#ff0000"
+            },
+            "data": [
+                {
+                    "label": "Completed",
+                    "value": this.stats.completed_tasks,
+                    "color": "#6baa01"
+                },
+                {
+                    "label": "In-progress",
+                    "value": this.stats.inprogress_tasks,
+                    "color": "#008ee4"
+                },
+                {
+                    "label": "Pending",
+                    "value": this.stats.pending_tasks,
+                    "color": "#ff0000"
+                }
+            ]
+          }; 
       }, (error)=> {
         console.log(error);
       })
       
-      this.dataSource_pie = {
+      
+     /* this.dataSource_pie = {
         "chart": {
             "caption": "Project Progress Statistics",
             "subcaption": "Tasks Analysis",
@@ -70,16 +104,16 @@ export class ReportComponent implements OnInit {
             },
             {
                 "label": "In-progress",
-                "value": this.stats.inprogress_tasks,
+                "value": 0, //this.stats.inprogress_tasks,
                 "color": "#008ee4"
             },
             {
                 "label": "Pending",
-                "value": this.stats.pending_tasks,
+                "value": 1, //this.stats.pending_tasks,
                 "color": "#ff0000"
             }
         ]
-      }; 
+      }; */
 
   }
 

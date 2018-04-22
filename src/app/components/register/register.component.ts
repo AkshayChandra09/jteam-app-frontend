@@ -21,11 +21,10 @@ export class RegisterComponent implements OnInit {
 
     if(this.user.password == this.user.confirm_password){
       this._userService.createUser(this.user).subscribe((user) => {
-        this._router.navigate(['/']);
+        this._router.navigate(['/login']);
       }, (error) => {
         console.log(error);
       });
-      //console.log("pwd sucess");
     }
     else{
       console.log("password confirm error");

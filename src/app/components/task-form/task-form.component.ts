@@ -48,13 +48,6 @@ export class TaskFormComponent implements OnInit {
       }, (error)=>{
         console.log(error);
       });
-
-      /*this._taskService.addTasks(this.task).subscribe((task)=>{
-        console.log(task);
-        this._router.navigate(['/view_tasks']);
-      }, (error)=>{
-        console.log(error);
-      });*/
     } 
     else{
       this._router.navigate(['/edit_tasks']);

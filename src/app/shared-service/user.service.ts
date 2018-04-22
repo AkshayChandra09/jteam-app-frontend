@@ -40,7 +40,7 @@ export class UserService {
 
   createUser(user:User){
     console.log(user);
-    return this._http.post(this.baseUrl+'/form', JSON.stringify(user), this.options).map((response:Response) => response.json()).catch(this.errorHandler);
+    return this._http.post(this.baseUrl+'/register', JSON.stringify(user), this.options).map((response:Response) => response.json()).catch(this.errorHandler);
   }
 
   //for authentication using pyjwt
