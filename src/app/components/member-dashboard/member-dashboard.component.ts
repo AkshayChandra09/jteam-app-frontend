@@ -36,4 +36,10 @@ export class MemberDashboardComponent implements OnInit {
      this._router.navigate(['/member_tasks']);
   }
 
+  logOut(){
+    alert('Are you sure, You want to logout?');
+    localStorage.removeItem('currentUser');
+    this._router.navigate(['/login']);
+  }
+  
 }

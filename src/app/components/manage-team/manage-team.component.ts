@@ -10,6 +10,7 @@ import { TaskObject } from '../../task-object';
 import { ProjectService } from '../../shared-service/project.service';
 import { TeamObject } from '../../team-object';
 import { Dashboard } from '../../dashboard';
+import {AuthService} from '../../shared-service/auth.service';
 
 
 @Component({
@@ -28,8 +29,12 @@ export class ManageTeamComponent implements OnInit {
   return_var_any: any;
   projectMembers: User[];
   team_object: TeamObject;
+  currentUser:User;
 
-  constructor(private _taskService: TaskService, private _projectService: ProjectService, private _router: Router, private _userService: UserService) { }
+  constructor(private _taskService: TaskService, private _projectService: ProjectService, private _authService:AuthService,
+     private _router: Router, private _userService: UserService) {
+    this.currentUser=JSON.parse(localStorage.getItem('currentUser'));
+   }
 
   ngOnInit() {
 
@@ -80,5 +85,11 @@ export class ManageTeamComponent implements OnInit {
     }, (error) => {
       console.log(error);
     });
+  }
+
+  logOut(){
+    alert('Are you sure, You want to logout?');
+    localStorage.removeItem('currentUser');
+    this._router.navigate(['/login']);
   }
 }

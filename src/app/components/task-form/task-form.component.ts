@@ -42,6 +42,7 @@ export class TaskFormComponent implements OnInit {
       this.proj_id = this._taskService.getProject_id(); 
 
       this.task_object = new TaskObject(this.task, this.teamMembers, this.proj_id);
+      console.log("Task Object = "+this.task_object);
       //this.task_object.project_id = this.proj_id;
       this._taskService.addTaskWithMembers(this.task_object).subscribe((task_object)=>{
         this._router.navigate(['/view_tasks']);
@@ -52,6 +53,12 @@ export class TaskFormComponent implements OnInit {
     else{
       this._router.navigate(['/edit_tasks']);
     }
+  }
+
+  logOut(){
+    alert('Are you sure, You want to logout?');
+    localStorage.removeItem('currentUser');
+    this._router.navigate(['/login']);
   }
 
 }

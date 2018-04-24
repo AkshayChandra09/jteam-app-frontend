@@ -32,9 +32,15 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
+    
     this.authService.logIn(this.user)
       .subscribe(data=>{
-        this._router.navigate(['/dashboard']);
+        
+        let findRole = JSON.parse(localStorage.getItem('currentUser'));
+        if(findRole.role=='Admin')
+          this._router.navigate(['/dashboard']);
+          else
+          this._router.navigate(['/member_dashboard']);
         },err=>{
         this.errorMessage="error :  Username or password is incorrect";
         }

@@ -4,6 +4,7 @@
   <hr>
   <!--<a class="btn btn-success" href="/add_task" (click)="newTask()">Add Task</a>-->
   <button class="btn btn-primary" (click)="newTask()">Add Task</button>
+  <button (click)="logOut()" class="btn btn-danger" style="margin-left:200px">Logout</button>
   <br>
   <br>
   <div *ngIf="msg; else elseBlock">

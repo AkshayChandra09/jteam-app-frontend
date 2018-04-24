@@ -70,5 +70,11 @@ export class ListtasksComponent implements OnInit {
   viewMembers(task) {
     this._router.navigate(['/task_members/', task.id]);
   }
+
+  logOut(){
+    alert('Are you sure, You want to logout?');
+    localStorage.removeItem('currentUser');
+    this._router.navigate(['/login']);
+  }
 }
 

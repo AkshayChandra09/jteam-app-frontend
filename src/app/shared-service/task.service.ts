@@ -8,23 +8,40 @@ import 'rxjs/add/observable/throw';
 
 import { Task } from '../task';
 import { TaskObject } from '../task-object';
+import {AuthService} from './auth.service';
+import {User} from '../user';
 
 
 @Injectable()
 export class TaskService {
 
+  user:User
+
+  private headers = new Headers();
+  private options = new RequestOptions();
+
   private baseUrl:string = 'http://localhost:8080/api';
 
-  private headers = new Headers({'Content-Type':'application/json'});
-  private options = new RequestOptions({headers:this.headers});
+  //private headers = new Headers({'Content-Type':'application/json'});
+  //private options = new RequestOptions({headers:this.headers});
 
   private task:Task;
 
   public project_id:Number;
 
-  constructor(private _http:Http) { }
+  constructor(private _http:Http, private _authService:AuthService) {
+    this.user=JSON.parse(localStorage.getItem('currentUser'));
+    // this.user = this._authService.getUser();
+    this.headers.append('Accept', 'application/json');
+    var base64Credential: string = btoa( this.user.user_name+ ':' + this.user.password); 
+    this.headers.append("Authorization", "Basic " + base64Credential);
+    this.headers.append('Content-Type', 'application/json');
+    this.options.headers=this.headers;
+    
+   }
 
   getTasks(){
+    console.log("User in getTask(TaskService): "+ this.user);
     return this._http.get(this.baseUrl+'/showTasks', this.options).map((response:Response) => response.json()).catch(this.errorHandler);
   }
 

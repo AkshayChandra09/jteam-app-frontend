@@ -94,14 +94,9 @@ export class DashboardComponent implements OnInit {
   }
 
   logOut(){
+    alert('Are you sure, You want to logout?');
     localStorage.removeItem('currentUser');
     this._router.navigate(['/login']);
-    /*this._authService.logOut().subscribe(
-      data => {
-        this._router.navigate(['/login']);
-    },
-    error => {}
-    );*/
   }
 
 }

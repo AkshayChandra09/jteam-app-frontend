@@ -1,28 +1,31 @@
 <div class="container">
-    <h1>Edit Task</h1>
+    <h1>Edit Task  <button (click)="logOut()" class="btn btn-danger" style="margin-left:50px">Logout</button></h1>
     <hr>
     <br>
     <form (ngSubmit)="editForm()">
         <div class="form group">
-            <label for="task">Task</label>
+            <label for="task"><b>Task</b></label>
             <input type="text" name="task_name" class="form-control" [(ngModel)]="task.task_name">
         </div>
+        <br>
         <div class="form group">
-            <label for="assigned_date">Date Assigned</label>
+            <label for="assigned_date"><b>Date Assigned</b></label>
             <input type="date" name="task_assigned_date" class="form-control" [ngModel]="task.task_assigned_date | date:'yyyy-MM-dd'"
                 (ngModelChange)="task.task_assigned_date = $event">
         </div>
+        <br>
         <div class="form group">
-            <label for="priority">Priority</label>
+            <label for="priority"><b>Priority</b></label>
             <input type="text" name="task_priority" class="form-control" [(ngModel)]="task.task_priority">
         </div>
+        <br>
         <div class="form group">
-            <label for="deadline">Due Date</label>
+            <label for="deadline"><b>Due Date</b></label>
             <input type="date" name="task_deadline" class="form-control" [ngModel]="task.task_deadline | date:'yyyy-MM-dd'" (ngModelChange)="task.task_deadline = $event">
         </div>
         <br>
         <div class="form group">
-            <label for="status">Status</label>
+            <label for="status"><b>Status</b></label>
             <select name="task_status" [(ngModel)]="task.task_status">
                 <option *ngFor="let st of status">{{st}}</option>
             </select>

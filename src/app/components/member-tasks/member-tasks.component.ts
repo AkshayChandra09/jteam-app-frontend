@@ -44,7 +44,12 @@ export class MemberTasksComponent implements OnInit {
     }, (error)=>{
       console.log(error);
     });
-    
+  }
+
+  logOut(){
+    alert('Are you sure, You want to logout?');
+    localStorage.removeItem('currentUser');
+    this._router.navigate(['/login']);
   }
 
 }

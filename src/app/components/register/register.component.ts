@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
       });
     }
     else{
-      console.log("password confirm error");
+      alert("password confirm error");
     }
 
   }

@@ -79,42 +79,12 @@ export class ReportComponent implements OnInit {
       }, (error)=> {
         console.log(error);
       })
-      
-      
-     /* this.dataSource_pie = {
-        "chart": {
-            "caption": "Project Progress Statistics",
-            "subcaption": "Tasks Analysis",
-            "startingangle": "120",
-            "showlabels": "0",
-            "showlegend": "1",
-            "enablemultislicing": "0",
-            "slicingdistance": "15",
-            "showpercentvalues": "1",
-            "showpercentintooltip": "0",
-            "plottooltext": "$label : $datavalue",
-            "theme": "ocean",
-            "smartLineColor": "#ff0000"
-        },
-        "data": [
-            {
-                "label": "Completed",
-                "value": this.stats.completed_tasks,
-                "color": "#6baa01"
-            },
-            {
-                "label": "In-progress",
-                "value": 0, //this.stats.inprogress_tasks,
-                "color": "#008ee4"
-            },
-            {
-                "label": "Pending",
-                "value": 1, //this.stats.pending_tasks,
-                "color": "#ff0000"
-            }
-        ]
-      }; */
+  }
 
+  logOut(){
+    alert('Are you sure, You want to logout?');
+    localStorage.removeItem('currentUser');
+    this._router.navigate(['/login']);
   }
 
 }

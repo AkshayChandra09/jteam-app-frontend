@@ -10,7 +10,10 @@ export class AuthService {
 
   constructor(public http: Http) { }
 
+  save_user:User;
+
   public logIn(user: User){
+
 
     let headers = new Headers();
     headers.append('Accept', 'application/json')
@@ -30,18 +33,22 @@ export class AuthService {
       if (user) {
         // store user details  in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));
+        this.save_user=user;
       }
     });
   }
 
   logOut() {
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
-    /*return this.http.post(AppComponent.API_URL+"logout",{})
+    return this.http.post("http://localhost:8080/logout",{})
       .map((response: Response) => {
         localStorage.removeItem('currentUser');
-      });*/
+        alert('Logged Out!');
+      });
+  }
 
+  getUser(){
+      return this.save_user;
   }
 
 }

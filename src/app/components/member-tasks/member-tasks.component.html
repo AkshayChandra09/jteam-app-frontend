@@ -1,6 +1,8 @@
 <a [routerLink]="['/member_dashboard']" class="btn btn-link"><b>Dashboard</b></a>
 <div style="margin-left:200px">
-  <h1>Task Manager {{project_id}}</h1>
+  <h1>Task Manager {{project_id}}
+      <button (click)="logOut()" class="btn btn-danger" style="margin-left:200px">Logout</button>
+  </h1>
   <br>
   <div *ngIf="msg; else elseBlock">
     <h2>No Tasks Added In This Project!</h2>

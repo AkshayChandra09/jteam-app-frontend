@@ -46,4 +46,10 @@ export class EditTaskComponent implements OnInit {
     }
   }
 
+  logOut(){
+    alert('Are you sure, You want to logout?');
+    localStorage.removeItem('currentUser');
+    this._router.navigate(['/login']);
+  }
+
 }
