@@ -70,7 +70,7 @@ export class DashboardComponent implements OnInit {
         "chart": {
           "caption": "Financial Statistics per project",
           "subCaption": "man/hr calculations per project",
-          "numberprefix": "$",
+          "numberprefix": "#",
           "theme": "fint"
         },
         "data": chartData

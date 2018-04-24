@@ -3,7 +3,8 @@ import {Router, RouterLink} from '@angular/router';
 import { TaskService } from '../../shared-service/task.service';
 import { Task } from '../../task'; 
 import { ProjectService } from '../../shared-service/project.service';
-
+import {AuthService} from '../../shared-service/auth.service';
+import {User} from '../../user';
 
 @Component({
   selector: 'app-member-tasks',
@@ -16,13 +17,20 @@ export class MemberTasksComponent implements OnInit {
   project_id:Number;
 
 
-  user_id:Number=3;
+  user_id:Number;
+  user:User;
+
   status = ["Pending","In-Progress","Completed"];
 
-  constructor(private _taskService:TaskService, private _projectService:ProjectService, private _router:Router) { }
+  constructor(private _taskService:TaskService, private _projectService:ProjectService, private _authService:AuthService,
+    private _router:Router) {
+      this.user=JSON.parse(localStorage.getItem('currentUser'));
+      this.user_id = this.user.id;
+     }
 
   ngOnInit() {
     this.project_id = this._projectService.getProject_id();
+   
     this._taskService.getMemberTasks(this.project_id,this.user_id).subscribe((tasks)=>{
       console.log(tasks);
       this.tasks=tasks;

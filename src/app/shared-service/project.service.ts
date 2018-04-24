@@ -80,7 +80,7 @@ export class ProjectService {
     return this._http.get(this.baseUrl+'/project_statistics/'+pid, this.options).map((response:Response) => response.json()).catch(this.errorHandler);
   }
 
-  getMembersProject(uid:number){
+  getMembersProject(uid:Number){
     return this._http.get(this.baseUrl+'/showMembersProjectsList/'+uid, this.options).map((response:Response) => response.json()).catch(this.errorHandler);
   }
 

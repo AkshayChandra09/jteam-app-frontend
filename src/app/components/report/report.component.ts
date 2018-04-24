@@ -33,7 +33,6 @@ export class ReportComponent implements OnInit {
 
 
   constructor(private _projectService : ProjectService, private _router:Router) {
-
   }
 
   ngOnInit() {
@@ -54,7 +53,7 @@ export class ReportComponent implements OnInit {
                 "slicingdistance": "15",
                 "showpercentvalues": "1",
                 "showpercentintooltip": "0",
-                "plottooltext": "$label : $datavalue",
+                "plottooltext": "$label: $datavalue",
                 "theme": "ocean",
                 "smartLineColor": "#ff0000"
             },
