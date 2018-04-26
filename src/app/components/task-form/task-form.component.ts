@@ -5,7 +5,7 @@ import { TaskService } from '../../shared-service/task.service';
 import {User} from '../../user'; 
 import {TeamMember} from '../../team-member';
 import {UserService} from '../../shared-service/user.service';
-
+import {AuthService} from '../../shared-service/auth.service';
 import {TaskObject} from '../../task-object';
 
 
@@ -24,12 +24,22 @@ export class TaskFormComponent implements OnInit {
 
   status = ["Pending","In-Progress","Completed"];
   priority = ["High", "Medium", "Low"];
+  currentUser:User;
 
-  constructor(private _taskService:TaskService, private _router:Router, private _userService:UserService) { }
+  constructor(private _taskService:TaskService, private _router:Router, private _authService:AuthService,
+    private _userService:UserService) { 
+    this.currentUser=JSON.parse(localStorage.getItem('currentUser'));
+  }
 
   ngOnInit() {
-    this._userService.getUsers().subscribe((usersArray)=>{
+    this.proj_id = this._taskService.getProject_id(); 
+    /*this._userService.getUsers().subscribe((usersArray)=>{
       console.log(usersArray);
+      this.usersArray=usersArray;
+    }, (error)=> {
+      console.log(error);
+    });*/ 
+    this._userService.getTeamMembers(this.proj_id).subscribe((usersArray)=>{
       this.usersArray=usersArray;
     }, (error)=> {
       console.log(error);

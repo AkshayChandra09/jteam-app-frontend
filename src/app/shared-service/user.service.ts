@@ -53,6 +53,13 @@ export class UserService {
     return this._http.get(this.baseUrl+'/getUsers', this.options).map((response:Response) => response.json()).catch(this.errorHandler);
   }
 
+  getTeamMembers(pid:Number){
+    this.user=JSON.parse(localStorage.getItem('currentUser'));
+    var base64Credential: string = btoa( this.user.user_name+ ':' + this.user.password); 
+    this.headers.append("Authorization", "Basic " + base64Credential);
+    return this._http.get(this.baseUrl+'/getProjectTeam/'+pid, this.options).map((response:Response) => response.json()).catch(this.errorHandler);
+  }
+
   createUser(user:User){
    // console.log("at user service = "+user);
     return this._http.post(this.baseUrl+'/register', JSON.stringify(user), this.options).map((response:Response) => response.json()).catch(this.errorHandler);
